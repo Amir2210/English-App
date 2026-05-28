@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-inverse-surface: #2e3132;
+  --color-background: #f8f9fa;
+  --color-surface-container-highest: #e1e3e4;
+  --color-on-error-container: #93000a;
+  --color-tertiary: #9e4300;
+  --color-error: #ba1a1a;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-primary-fixed-variant: #004493;
+  --color-on-error: #ffffff;
+  --color-primary-container: #1a73e8;
+  --color-primary: #005bbf;
+  --color-on-primary-container: #ffffff;
+  --color-on-surface: #191c1d;
+  --color-surface-variant: #e1e3e4;
+  --color-surface-container-low: #f3f4f5;
+  --color-secondary-fixed-dim: #c3c7cc;
+  --color-on-background: #191c1d;
+  --color-tertiary-fixed: #ffdbcb;
+  --color-inverse-on-surface: #f0f1f2;
+  --color-surface-container: #edeeef;
+  --color-on-tertiary: #ffffff;
+  --color-secondary-fixed: #dfe3e8;
+  --color-surface-container-high: #e7e8e9;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-fixed: #181c20;
+  --color-on-tertiary-fixed-variant: #783100;
+  --color-on-secondary-fixed-variant: #43474c;
+  --color-outline: #727785;
+  --color-on-secondary-container: #5f6368;
+  --color-tertiary-container: #c55500;
+  --color-surface-bright: #f8f9fa;
+  --color-error-container: #ffdad6;
+  --color-inverse-primary: #adc7ff;
+  --color-secondary-container: #dde0e6;
+  --color-primary-fixed: #d8e2ff;
+  --color-on-surface-variant: #414754;
+  --color-on-tertiary-container: #0e0200;
+  --color-surface-dim: #d9dadb;
+  --color-outline-variant: #c1c6d6;
+  --color-tertiary-fixed-dim: #ffb691;
+  --color-on-primary-fixed: #001a41;
+  --color-surface-tint: #005bc0;
+  --color-on-primary: #ffffff;
+  --color-secondary: #5b5f64;
+  --color-primary-fixed-dim: #adc7ff;
+  --color-surface: #f8f9fa;
+  --color-on-tertiary-fixed: #341100;
+
+  --font-headline: var(--font-plus-jakarta-sans);
+  --font-body: var(--font-inter);
+  --font-label: var(--font-assistant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-assistant), sans-serif;
+  background-color: var(--color-background);
+}
+
+button, [role="button"] {
+  cursor: pointer;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+@utility academic-glow {
+  box-shadow: 0px 10px 40px rgba(25, 28, 29, 0.05);
+}
+
+@keyframes cardIn {
+  0% {
+    transform: scale(0.95) translateY(8px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes globePulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(0, 91, 191, 0.15), 0 0 80px rgba(0, 91, 191, 0.05); }
+  50%      { box-shadow: 0 0 60px rgba(0, 91, 191, 0.25), 0 0 120px rgba(0, 91, 191, 0.1); }
+}
+
+@keyframes floatCard1 {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50%      { transform: translateY(-12px) rotate(0deg); }
+}
+
+@keyframes floatCard2 {
+  0%, 100% { transform: translateY(0px) rotate(2deg); }
+  50%      { transform: translateY(-10px) rotate(0deg); }
+}
+
+@keyframes floatCard3 {
+  0%, 100% { transform: translateY(0px) rotate(1deg); }
+  50%      { transform: translateY(-14px) rotate(-1deg); }
 }
