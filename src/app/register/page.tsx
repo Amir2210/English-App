@@ -119,7 +119,7 @@ export default function RegisterPage() {
             <label className="text-on-surface font-semibold text-sm mr-1">סיסמה</label>
             <div className="relative group">
               <input 
-                className="w-full h-14 bg-surface-container-low border-none rounded-xl px-4 text-on-surface font-body focus:ring-0 focus:bg-surface-container-lowest transition-all outline-none" 
+                className="w-full h-14 bg-surface-container-low border-none rounded-xl pl-14 pr-4 text-on-surface font-body focus:ring-0 focus:bg-surface-container-lowest transition-all outline-none" 
                 dir="ltr" 
                 placeholder="••••••••" 
                 type={showPassword ? "text" : "password"}
@@ -128,8 +128,9 @@ export default function RegisterPage() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button 
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors focus:outline-none" 
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary hover:bg-on-surface/5 transition-colors focus:outline-none" 
                 type="button"
+                aria-label={showPassword ? "הסתר סיסמה" : "הצג סיסמה"}
                 onClick={() => setShowPassword(!showPassword)}
               >
                 <span className="material-symbols-outlined">
