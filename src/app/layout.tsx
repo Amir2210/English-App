@@ -19,7 +19,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Atlas",
-  description: "לימוד אנגלית חכם — אוצר מילים, כרטיסיות ושאלות אמיר״ם במקום אחד",
+  description: "לימוד אנגלית חכם - אוצר מילים, כרטיסיות ושאלות אמיר״ם במקום אחד",
 };
 
 export default function RootLayout({

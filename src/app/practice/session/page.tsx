@@ -79,7 +79,7 @@ function PracticeSession() {
     return (
       <div className="flex bg-surface min-h-screen items-center justify-center font-hebrew text-primary flex-col gap-4">
         <span className="material-symbols-outlined animate-spin text-5xl">sync</span>
-        <span className="font-semibold text-lg animate-pulse">טוען שאלות — {levelLabel}...</span>
+        <span className="font-semibold text-lg animate-pulse">טוען שאלות - {levelLabel}...</span>
       </div>
     );
   }

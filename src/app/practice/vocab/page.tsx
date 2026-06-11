@@ -263,7 +263,7 @@ function VocabPracticePageInner() {
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-lg font-bold font-body text-on-surface">{item.word}</span>
-                    <span className="text-sm text-on-surface-variant">—</span>
+                    <span className="text-sm text-on-surface-variant">-</span>
                     <span className="text-sm text-on-surface-variant font-medium">{item.correctAnswer}</span>
                   </div>
                   <button
@@ -364,7 +364,7 @@ function VocabPracticePageInner() {
 
         <main className="w-full max-w-5xl px-6 py-4 flex-1">
 
-          {/* Progress bar — thin and compact */}
+          {/* Progress bar - thin and compact */}
           {user && (knownWords.size > 0 || needsPracticeWords.size > 0) && (
             <div className="flex h-2 rounded-full overflow-hidden mb-5 bg-surface-container-highest">
               {knownWords.size > 0 && (
@@ -376,7 +376,7 @@ function VocabPracticePageInner() {
             </div>
           )}
 
-          {/* Game Modes + Quick Actions — compact row */}
+          {/* Game Modes + Quick Actions - compact row */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 mb-5">
             <button
               onClick={() => handleCategoryClick("all")}
@@ -454,7 +454,7 @@ function VocabPracticePageInner() {
             )}
           </div>
 
-          {/* Category Grid — tighter */}
+          {/* Category Grid - tighter */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
             {filteredCategories.map((cat) => {
               const catItems = allItems.filter(i => i.category === cat);
@@ -750,7 +750,7 @@ function VocabPracticePageInner() {
           </button>
         </div>
 
-        {/* Hebrew Options — 2x2 Grid */}
+        {/* Hebrew Options - 2x2 Grid */}
         <div className="grid grid-cols-2 gap-4 w-full max-w-xl pb-48">
           {current.options.map((option, idx) => {
             const letter = ["א", "ב", "ג", "ד"][idx];

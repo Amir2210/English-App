@@ -93,7 +93,7 @@ function InteractiveGlobe() {
     >
       {/* Ocean base */}
       <div className="absolute inset-0 rounded-full bg-linear-to-br from-blue-400 via-primary to-indigo-600 overflow-hidden">
-        {/* Scrolling continent strip — tiled, wrapping seamlessly */}
+        {/* Scrolling continent strip - tiled, wrapping seamlessly */}
         <div
           className="absolute top-0 h-full pointer-events-none"
           style={{
@@ -105,7 +105,7 @@ function InteractiveGlobe() {
             backgroundRepeat: "repeat-x",
           }}
         />
-        {/* Fixed 3D lighting — sells the sphere illusion */}
+        {/* Fixed 3D lighting - sells the sphere illusion */}
         <div
           className="absolute inset-0 rounded-full pointer-events-none"
           style={{
@@ -288,7 +288,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-base sm:text-lg text-on-surface-variant max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                מערכת למידה אינטראקטיבית עם כרטיסיות, משחקי התאמה, תרגול אוצר מילים ושאלות ברמת אמיר&quot;ם — הכל במקום אחד, בחינם.
+                מערכת למידה אינטראקטיבית עם כרטיסיות, משחקי התאמה, תרגול אוצר מילים ושאלות ברמת אמיר&quot;ם - הכל במקום אחד, בחינם.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -296,7 +296,7 @@ export default function HomePage() {
                   href="/register"
                   className="w-full sm:w-auto bg-primary text-on-primary px-8 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20 hover:scale-[1.03] active:scale-[0.97] transition-all flex items-center justify-center gap-2"
                 >
-                  התחל ללמוד — בחינם
+                  התחל ללמוד - בחינם
                   <span className="material-symbols-outlined">arrow_back</span>
                 </Link>
                 <button
@@ -323,13 +323,13 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero visual — spinning globe with floating cards */}
+            {/* Hero visual - spinning globe with floating cards */}
             <div className="hidden lg:flex items-center justify-center relative" style={{ width: 520, height: 520 }}>
 
               {/* Globe */}
               <InteractiveGlobe />
 
-              {/* ─ Floating card 1 — top right ─ */}
+              {/* ─ Floating card 1 - top right ─ */}
               <div
                 className="absolute group"
                 style={{ top: -18, right: -10, animation: "floatCard1 5s ease-in-out infinite" }}
@@ -348,7 +348,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* ─ Floating card 2 — left ─ */}
+              {/* ─ Floating card 2 - left ─ */}
               <div
                 className="absolute group"
                 style={{ top: "50%", left: -80, marginTop: -35, animation: "floatCard2 6s ease-in-out infinite 0.5s" }}
@@ -366,7 +366,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* ─ Floating card 3 — bottom ─ */}
+              {/* ─ Floating card 3 - bottom ─ */}
               <div
                 className="absolute group"
                 style={{ bottom: -28, left: "50%", marginLeft: -100, animation: "floatCard3 5.5s ease-in-out infinite 1s" }}
@@ -384,7 +384,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* ─ Floating card 4 — right ─ */}
+              {/* ─ Floating card 4 - right ─ */}
               <div
                 className="absolute group"
                 style={{ top: "36%", right: -70, animation: "floatCard2 5s ease-in-out infinite 1.5s" }}
@@ -404,7 +404,7 @@ export default function HomePage() {
 
             </div>
 
-            {/* Mobile card grid — shown only on small screens */}
+            {/* Mobile card grid - shown only on small screens */}
             <div className="grid grid-cols-2 gap-3 lg:hidden w-full max-w-sm mx-auto mt-2">
               {[
                 { emoji: "🃏", label: "כרטיסיות", desc: "הפוך, גלה תרגום, עקוב", bg: "bg-violet-100", border: "hover:border-violet-400/40" },
@@ -452,7 +452,7 @@ export default function HomePage() {
               {
                 icon: "translate",
                 title: "תרגול אוצר מילים",
-                desc: "למעלה מ-500 מילים מחולקות לקטגוריות עם 4 אפשרויות תרגום — בחר את התשובה הנכונה וצבור ידע",
+                desc: "למעלה מ-500 מילים מחולקות לקטגוריות עם 4 אפשרויות תרגום - בחר את התשובה הנכונה וצבור ידע",
                 color: "from-violet-500 to-indigo-600",
                 bgLight: "bg-violet-50",
                 iconColor: "text-violet-600",
@@ -460,7 +460,7 @@ export default function HomePage() {
               {
                 icon: "style",
                 title: "כרטיסיות (Flashcards)",
-                desc: "הפוך כרטיס, ראה את התרגום ודוגמה במשפט — סמן אם אתה יודע או צריך לחזור",
+                desc: "הפוך כרטיס, ראה את התרגום ודוגמה במשפט - סמן אם אתה יודע או צריך לחזור",
                 color: "from-blue-500 to-cyan-500",
                 bgLight: "bg-blue-50",
                 iconColor: "text-blue-600",
@@ -468,7 +468,7 @@ export default function HomePage() {
               {
                 icon: "hub",
                 title: "משחק התאמה",
-                desc: "חבר 10 מילים באנגלית לתרגום בעברית — צבעים ייחודיים לכל זוג, תוצאות בסוף המשחק",
+                desc: "חבר 10 מילים באנגלית לתרגום בעברית - צבעים ייחודיים לכל זוג, תוצאות בסוף המשחק",
                 color: "from-amber-500 to-orange-500",
                 bgLight: "bg-amber-50",
                 iconColor: "text-amber-600",
@@ -476,7 +476,7 @@ export default function HomePage() {
               {
                 icon: "quiz",
                 title: "שאלות אמיר\"ם",
-                desc: "שאלות ברמת מבחן אמיר\"ם אמיתי ב-5 רמות קושי — התאמן על סוג השאלות שמחכות לך במבחן",
+                desc: "שאלות ברמת מבחן אמיר\"ם אמיתי ב-5 רמות קושי - התאמן על סוג השאלות שמחכות לך במבחן",
                 color: "from-emerald-500 to-green-600",
                 bgLight: "bg-emerald-50",
                 iconColor: "text-emerald-600",
@@ -492,7 +492,7 @@ export default function HomePage() {
               {
                 icon: "category",
                 title: "20+ קטגוריות מילים",
-                desc: "מתחיליות שלילה ועד מילות קישור, תחיליות זמן ומרחב — כל הנושאים שמופיעים במבחן",
+                desc: "מתחיליות שלילה ועד מילות קישור, תחיליות זמן ומרחב - כל הנושאים שמופיעים במבחן",
                 color: "from-teal-500 to-cyan-600",
                 bgLight: "bg-teal-50",
                 iconColor: "text-teal-600",
@@ -526,7 +526,7 @@ export default function HomePage() {
           </div>
 
           <div className="relative">
-            {/* Winding SVG path — desktop, passes through each node center */}
+            {/* Winding SVG path - desktop, passes through each node center */}
             <svg
               className="absolute top-0 left-1/2 -translate-x-1/2 h-full hidden sm:block pointer-events-none"
               style={{ width: "200px" }}
@@ -561,7 +561,7 @@ export default function HomePage() {
                   icon: "rocket_launch",
                   title: "מתחיל",
                   subtitle: "Beginner",
-                  desc: "נרשמים בחינם ומתחילים עם מילים בסיסיות — קטגוריות קלות, כרטיסיות ומשחקי התאמה ראשונים",
+                  desc: "נרשמים בחינם ומתחילים עם מילים בסיסיות - קטגוריות קלות, כרטיסיות ומשחקי התאמה ראשונים",
                   color: "from-emerald-400 to-teal-500",
                   ringColor: "ring-emerald-200",
                   bgDot: "bg-emerald-500",
@@ -572,7 +572,7 @@ export default function HomePage() {
                   icon: "local_library",
                   title: "לומד",
                   subtitle: "Learner",
-                  desc: "מרחיבים את אוצר המילים — תחיליות, מילות קישור, רמות קושי בינוניות ומעקב התקדמות",
+                  desc: "מרחיבים את אוצר המילים - תחיליות, מילות קישור, רמות קושי בינוניות ומעקב התקדמות",
                   color: "from-blue-400 to-indigo-500",
                   ringColor: "ring-blue-200",
                   bgDot: "bg-blue-500",
@@ -583,7 +583,7 @@ export default function HomePage() {
                   icon: "translate",
                   title: "מתרגל",
                   subtitle: "Practicing",
-                  desc: "מתרגלים ברמה גבוהה — קטגוריות קשות, חזרה על מילים שטעיתם בהן, שליטה ב-80%+ מהמילים",
+                  desc: "מתרגלים ברמה גבוהה - קטגוריות קשות, חזרה על מילים שטעיתם בהן, שליטה ב-80%+ מהמילים",
                   color: "from-amber-400 to-orange-500",
                   ringColor: "ring-amber-200",
                   bgDot: "bg-amber-500",
@@ -605,7 +605,7 @@ export default function HomePage() {
                   icon: "emoji_events",
                   title: "שולט באמיר\"ם",
                   subtitle: "Amiram Master",
-                  desc: "100% שליטה באוצר מילים, כל הקטגוריות הושלמו, ציון גבוה בשאלות אמיר\"ם — מוכנים למבחן!",
+                  desc: "100% שליטה באוצר מילים, כל הקטגוריות הושלמו, ציון גבוה בשאלות אמיר\"ם - מוכנים למבחן!",
                   color: "from-yellow-400 to-amber-500",
                   ringColor: "ring-yellow-200",
                   bgDot: "bg-yellow-500",
@@ -693,19 +693,19 @@ export default function HomePage() {
                 step: "01",
                 icon: "person_add",
                 title: "הירשם בחינם",
-                desc: "צור חשבון תוך שניות עם Google או אימייל — בלי תשלום, בלי התחייבות",
+                desc: "צור חשבון תוך שניות עם Google או אימייל - בלי תשלום, בלי התחייבות",
               },
               {
                 step: "02",
                 icon: "tune",
                 title: "בחר מה לתרגל",
-                desc: "בחר קטגוריה, רמת קושי ומצב תרגול — הכל מותאם אישית להתקדמות שלך",
+                desc: "בחר קטגוריה, רמת קושי ומצב תרגול - הכל מותאם אישית להתקדמות שלך",
               },
               {
                 step: "03",
                 icon: "emoji_events",
                 title: "שלוט באנגלית",
-                desc: "תרגל מדי יום, עקוב אחרי ההתקדמות ותראה את השיפור — מילה אחרי מילה",
+                desc: "תרגל מדי יום, עקוב אחרי ההתקדמות ותראה את השיפור - מילה אחרי מילה",
               },
             ].map((item, i) => (
               <div key={i} className="text-center group">

@@ -192,7 +192,7 @@ function VocabMatchPageInner() {
       }
     }
 
-    // Nothing selected yet — select this card
+    // Nothing selected yet - select this card
     if (!selectedSide || !selectedId) {
       setPendingColorIdx(nextAvailableColorIdx(matches));
       setSelectedSide(side);
@@ -200,14 +200,14 @@ function VocabMatchPageInner() {
       return;
     }
 
-    // Same side clicked — switch selection
+    // Same side clicked - switch selection
     if (selectedSide === side) {
       setSelectedSide(side);
       setSelectedId(vocabId);
       return;
     }
 
-    // Different sides — create a match
+    // Different sides - create a match
     const engId = side === "eng" ? vocabId : selectedId;
     const hebId = side === "heb" ? vocabId : selectedId;
 
@@ -484,7 +484,7 @@ function VocabMatchPageInner() {
         <div className="max-w-4xl w-full px-6 mb-4">
           <p className="text-sm text-on-surface-variant text-center bg-surface-container-lowest border border-outline-variant/20 rounded-xl px-4 py-3">
             <span className="material-symbols-outlined text-base align-middle ml-1">info</span>
-            לחץ על מילה באנגלית ועל התרגום בעברית — הזוג יסומן באותו צבע. לחץ על זוג צבעוני כדי לבטל בחירה.
+            לחץ על מילה באנגלית ועל התרגום בעברית - הזוג יסומן באותו צבע. לחץ על זוג צבעוני כדי לבטל בחירה.
           </p>
         </div>
       )}

@@ -434,7 +434,7 @@ function FlashcardPageInner() {
               animation: !direction && !flipped ? "cardIn 0.35s cubic-bezier(0.16, 1, 0.3, 1)" : undefined,
             }}
           >
-            {/* Front — English word */}
+            {/* Front - English word */}
             <div
               className="absolute inset-0 rounded-3xl bg-surface-container-lowest border-2 border-outline-variant/20 shadow-[0px_8px_30px_rgba(25,28,29,0.08)] flex flex-col items-center justify-center p-8"
               style={{ backfaceVisibility: "hidden" }}
@@ -458,7 +458,7 @@ function FlashcardPageInner() {
               </span>
             </div>
 
-            {/* Back — Hebrew + sentence */}
+            {/* Back - Hebrew + sentence */}
             <div
               className="absolute inset-0 rounded-3xl bg-primary text-on-primary shadow-[0px_8px_30px_rgba(25,28,29,0.12)] flex flex-col items-center justify-center p-8"
               style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
@@ -488,7 +488,7 @@ function FlashcardPageInner() {
           </div>
         </div>
 
-        {/* Action buttons — only after flip */}
+        {/* Action buttons - only after flip */}
         {flipped && !answered && (
           <div className="flex gap-4 mt-8 animate-fade-in-up w-full max-w-md">
             <button

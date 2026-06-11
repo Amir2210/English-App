@@ -73,7 +73,7 @@ const LEVEL_CONFIG: Omit<LevelInfo, "count">[] = [
   {
     level: "mix",
     label: "Mix",
-    labelHe: "מיקס — כל הרמות",
+    labelHe: "מיקס - כל הרמות",
     description: "שאלות אקראיות מכל הרמות. סימולציה אמיתית של מבחן אמיר\"ם.",
     icon: "shuffle",
     color: "text-primary",
@@ -141,7 +141,7 @@ export default function PracticeLevelPickerPage() {
 
       <main className="w-full max-w-4xl px-6 py-6 flex-1">
 
-        {/* Vocabulary Card — Big & Prominent */}
+        {/* Vocabulary Card - Big & Prominent */}
         <button
           onClick={() => router.push("/practice/vocab")}
           className="w-full mb-8 p-7 rounded-2xl border-2 border-violet-200 hover:border-violet-400 bg-violet-50 text-right transition-all hover:shadow-lg active:scale-[0.98] group"
@@ -166,7 +166,7 @@ export default function PracticeLevelPickerPage() {
         {/* Divider */}
         <div className="flex items-center gap-4 mb-8">
           <div className="flex-1 h-px bg-outline-variant/30"></div>
-          <span className="text-sm font-bold text-on-surface-variant bg-surface px-3">שאלות אמיר"ם — בחר רמה</span>
+          <span className="text-sm font-bold text-on-surface-variant bg-surface px-3">שאלות אמיר"ם - בחר רמה</span>
           <div className="flex-1 h-px bg-outline-variant/30"></div>
         </div>
 

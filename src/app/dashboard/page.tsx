@@ -217,14 +217,14 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      {/* SideNavBar — hidden on mobile, slide-in drawer */}
+      {/* SideNavBar - hidden on mobile, slide-in drawer */}
       <aside className={`
         h-screen w-64 fixed right-0 top-0 bg-surface-container-low flex flex-col py-6 pr-4 pl-0 text-right z-50
         transition-transform duration-300 ease-out
         ${sidebarOpen ? "translate-x-0" : "translate-x-full"}
         lg:translate-x-0
       `}>
-        {/* Close button — mobile only */}
+        {/* Close button - mobile only */}
         <button
           onClick={() => setSidebarOpen(false)}
           className="absolute top-4 left-3 p-1.5 rounded-lg hover:bg-surface-container-highest transition-colors lg:hidden"
@@ -287,7 +287,7 @@ export default function DashboardPage() {
         </div>
       </aside>
 
-      {/* Main Content Area — responsive margin */}
+      {/* Main Content Area - responsive margin */}
       <main className="flex-1 flex flex-col min-h-screen lg:mr-64 pt-14 lg:pt-0">
         <div className="p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6 lg:space-y-8">
 
