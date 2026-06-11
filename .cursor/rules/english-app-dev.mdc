@@ -1,0 +1,158 @@
+---
+description: English-App (Atlas) developer doctrine - Next.js 16 App Router, React 19, Firebase client SDK, Tailwind v4, Hebrew/RTL UI. Always applied in this workspace.
+alwaysApply: true
+---
+
+# Atlas / English-App - Developer Doctrine
+
+**Last updated:** 11 Jun 2026
+**Stack:** Next.js 16.2.2 · React 19.2 · TypeScript 5 (strict) · Firebase 12 (client SDK) · Tailwind 4 · ESLint flat config
+
+This doctrine is the source of truth for any code change inside this workspace. It is intentionally short and matched to the actual codebase - not a generic Next.js cheat-sheet. Read `AGENTS.md` for the Next.js-version warning; this file extends it.
+
+---
+
+## 0 · Identity & purpose of the app
+
+- "Atlas" is a Hebrew-speaking learner's English-practice PWA (vocabulary, flashcards, matching, Amiram exam prep).
+- The UI is **Hebrew, RTL** (`<html lang="he" dir="rtl">`). All user-facing strings are in Hebrew; only domain terms (English vocabulary) appear in English.
+- Auth + data are **Firebase** (Auth + Firestore). Hosting is **Firebase Hosting** (`firebase.json`).
+- Per-user data lives at `users/{uid}`; shared content at `vocabulary/{docId}` and `questions/{docId}` (read-only for authed users - see `firestore.rules`).
+
+---
+
+## 1 · Project layout (current, authoritative)
+
+```
+src/
+├── app/                       # Next.js App Router (RSC by default)
+│   ├── layout.tsx             # Root layout, fonts, RTL, global classes
+│   ├── globals.css            # Tailwind v4 entry + theme tokens
+│   ├── page.tsx               # Landing
+│   ├── error.tsx / loading.tsx / not-found.tsx
+│   ├── dashboard/             # Logged-in home
+│   ├── practice/              # /practice, /practice/session, /practice/vocab[/flashcard|/match]
+│   ├── register/              # Sign-in / sign-up flow
+│   └── settings/
+└── lib/
+    ├── firebase.ts            # Firebase client singleton (auth, db)
+    ├── useUserProfile.ts      # Auth-aware profile hook with in-module cache
+    └── vocab-utils.ts         # Pure helpers: shuffle, smart session builder, category metadata
+```
+
+- Path alias: **`@/*` → `src/*`** (`tsconfig.json`). Always import via `@/lib/...`, `@/app/...`. Never `../../../lib/...`.
+- Add a new shared helper to `src/lib/`. Add a new page to `src/app/<route>/page.tsx`. Add per-route subcomponents inside that route folder (Next.js convention) - not in `src/components/` unless we introduce that directory deliberately.
+
+---
+
+## 2 · Next.js 16 App Router rules (NOT the Next.js you know)
+
+`AGENTS.md` already warns about this. Practical rules for this repo:
+
+1. **Server Components by default.** Only add `"use client"` when the file uses hooks, browser APIs, or event handlers. `useUserProfile.ts` is `"use client"` because it uses `useEffect` + `onAuthStateChanged`. Pages that only read static layout stay server components.
+2. **Firebase client SDK is client-only.** Anything that imports from `@/lib/firebase` (which calls `getAuth` / `getFirestore`) must be in a `"use client"` boundary, or wrapped by one. Do **not** import `@/lib/firebase` from a server component / route handler - it will break SSR and leak the client SDK into the server bundle. For server-side Firestore access we would need `firebase-admin` (not currently installed; ask before adding).
+3. **No `getServerSideProps` / `getStaticProps`.** Use `async` server components, `fetch` with Next.js cache options, or route handlers in `app/api/<name>/route.ts` when needed.
+4. **Metadata** is exported from `layout.tsx` / `page.tsx` via `export const metadata` (already done in root layout). Per-page metadata should follow the same pattern.
+5. **Route-level `loading.tsx`, `error.tsx`, `not-found.tsx`** already exist at the root - mirror them per-route only when the UX differs from the root.
+6. **Before adding any new App-Router feature you are not 100% sure of, `Read` the relevant guide in `node_modules/next/dist/docs/`** (per `AGENTS.md`). Heed deprecation notices in 16.x.
+7. **React 19:** `use`, `useActionState`, `useFormStatus`, `useOptimistic` are available. Prefer Server Actions for form mutations when the action does not need the Firebase **client** SDK; otherwise keep client handlers.
+
+---
+
+## 3 · Firebase / Firestore discipline
+
+- **Single client instance:** `auth` and `db` come from `@/lib/firebase` (which guards `getApps().length`). Do not call `initializeApp` anywhere else.
+- **Security rules are the contract** (`firestore.rules`). Match queries to them:
+  - `vocabulary/*`, `questions/*` - read requires auth, no writes from client.
+  - `users/{uid}` - read/write only when `request.auth.uid == uid`.
+- **Profile reads are cached** in `useUserProfile.ts` via module-level `cachedProfile` / `cachedUid`. Call `invalidateProfileCache()` after any write to `users/{uid}` (e.g. settings save) so the next render sees fresh data.
+- **Always handle the unauthenticated case** - wait for `loading === false` before redirecting or reading user-scoped data. `onAuthStateChanged` fires async on first mount.
+- **Environment variables:** all Firebase config uses `NEXT_PUBLIC_FIREBASE_*` (client-exposed by design). Never commit values to `.env.example` beyond placeholders. Never read `process.env.NEXT_PUBLIC_*` outside `@/lib/firebase` - re-use the singleton.
+- **Adding a new collection:** update `firestore.rules` in the same change set. Do not ship a feature that reads/writes a collection without a matching rule.
+- **Type Firestore documents** in `@/lib/` (e.g. `UserProfile` in `useUserProfile.ts`). Co-locate the type with the hook/service that owns the read/write. Do not scatter `as any` casts - narrow `DocumentSnapshot.data()` explicitly (see `useUserProfile.ts` for the pattern).
+
+---
+
+## 4 · TypeScript & code style
+
+- `strict: true` is on. No `any`. No `as unknown as X` to silence errors - narrow with type guards or rewrite the type.
+- Public exports get an explicit return type; local helpers may rely on inference.
+- Prefer `interface` for object shapes that may be extended, `type` for unions / mapped / utility types - match what `useUserProfile.ts` and `vocab-utils.ts` already do.
+- Filenames: `kebab-case.ts` for utilities (`vocab-utils.ts`), `camelCase.ts` for hooks (`useUserProfile.ts`), `page.tsx` / `layout.tsx` / `loading.tsx` for Next.js conventions (cannot be renamed).
+- **No em-dashes (`-`) anywhere** - in code, comments, Hebrew copy, commit messages, or these rules. Use a regular hyphen (`-`) instead. This is enforced project-wide (see commit `66d73cf chore: replace em-dashes (-) with regular hyphens (-) project-wide`).
+- React component names are `PascalCase`, hooks are `useXxx`. Components must be rendered as JSX (`<Foo />`), never invoked as plain functions (`{Foo()}`) - that breaks hooks and reconciliation.
+- Run `npm run lint` before declaring a change done. ESLint flat config = `eslint-config-next/core-web-vitals` + `eslint-config-next/typescript`. Do not introduce ESLint disables without a one-line justification on the same line.
+
+---
+
+## 5 · UI / Tailwind v4 / RTL
+
+- **Tailwind 4** is configured via `@tailwindcss/postcss` + `postcss.config.mjs`. Theme tokens live in `globals.css` (e.g. `bg-surface`, `text-on-surface` are already used in `layout.tsx`). Reuse tokens; do not invent ad-hoc colours.
+- **RTL first.** The root layout sets `dir="rtl"`. Use logical Tailwind utilities (`ps-*`, `pe-*`, `ms-*`, `me-*`, `start-*`, `end-*`) - not `pl-*` / `pr-*` / `left-*` / `right-*` - so the layout works without manual flipping.
+- **Fonts** are loaded with `next/font/google` in `layout.tsx` (`Plus_Jakarta_Sans`, `Assistant` Hebrew, `Inter`) and exposed as CSS variables. Use those variables; do not import additional Google Fonts in components.
+- **Material Symbols** are loaded via stylesheet in the root `<head>`. Use them with the documented class `material-symbols-outlined` (see `vocab-utils.ts` `getGameModeIcon`).
+- **Hebrew copy** belongs inline in JSX for now (no i18n library is set up). If a feature needs English/Hebrew toggling later, propose introducing `next-intl` or a similar lib **before** implementing - do not invent a custom one.
+
+---
+
+## 6 · Domain conventions (vocabulary / practice)
+
+- `VocabItem`, `Difficulty`, `GameMode`, and category maps (`CATEGORY_EMOJI`, `CATEGORY_HEBREW`, `CATEGORY_DIFFICULTY`) live in `@/lib/vocab-utils.ts`. **Reuse them.** When adding a new category, add the entry to all three maps in the same change.
+- Session-building logic = `buildSmartSession`. Do not reimplement per-page; extend the helper.
+- Random/shuffle = `shuffleArray<T>(arr)`. Do not call `Math.random` inline in components - call the helper.
+- Difficulty ordering per user level is encoded in `LEVEL_DIFFICULTY_ORDER`. New levels or focus modes update **the helper**, not each page.
+- `UserProfile` defaults (`DEFAULTS` in `useUserProfile.ts`) are the contract for missing Firestore fields - keep them in sync with `firestore.rules` and any settings UI.
+
+---
+
+## 7 · Performance & UX defaults
+
+- Prefer **server components + streaming** for landing/dashboard shells; promote to client only at the interactive leaf.
+- Use `next/image` for any image that lands in the UI (the only configured remote host is `lh3.googleusercontent.com` for Google avatars - extend `next.config.ts` `remotePatterns` before using a new host).
+- Use `next/link` for in-app navigation; do not use raw `<a>` for internal routes.
+- Loading UX: rely on the route's `loading.tsx`. Local spinners are fine for in-component async (e.g. profile load), but do not duplicate full-screen loaders.
+
+---
+
+## 8 · Git / commits
+
+- The user's global `git-workflow.mdc` rule is **MCP-centric for Bitbucket** and does **not** apply to this repo (this is a regular Git project, not the 3UK CRM Bitbucket workspace). For this repo, normal Git is fine.
+- Never commit `.env.local` or any file containing real Firebase keys.
+- Never commit without the user explicitly asking ("commit my changes" or similar).
+- When you do commit, use a short imperative subject (`feat: …`, `fix: …`, `chore: …`) and group related files only.
+
+---
+
+## 9 · When to stop and ask
+
+Ask the user before:
+
+1. Introducing a new top-level dependency (auth lib, state lib, i18n lib, UI kit, ORM, etc.).
+2. Adding a new Firestore collection without a clear matching change to `firestore.rules`.
+3. Adding `firebase-admin` or any server-side Firebase access (changes the security model).
+4. Migrating to a new Next.js major or React major.
+5. Introducing a build step the existing scripts don't cover (e.g. Storybook, Cypress, Playwright).
+6. Refactoring the directory layout (e.g. adding `src/components/`, `src/features/`).
+
+Otherwise, proceed autonomously per this doctrine.
+
+---
+
+## 10 · Pre-submit checklist (run mentally before saying "done")
+
+1. **Reads/Writes match `firestore.rules`** - and rules updated if needed.
+2. **`"use client"` boundary** is correct (added where hooks/browser APIs are used; not added where the file can stay a server component).
+3. **No client Firebase import in a server file.**
+4. **TypeScript clean** - no `any`, no double-cast escape hatches, strict mode passes.
+5. **RTL-safe Tailwind** (`ps`/`pe`/`ms`/`me`/`start`/`end`, not `pl`/`pr`/`left`/`right`).
+6. **Theme tokens reused** (no inline `#hex` when a token exists).
+7. **Helpers reused** - `shuffleArray`, `buildSmartSession`, `CATEGORY_*`, `useUserProfile`, etc.
+8. **`@/` alias used** for cross-folder imports.
+9. **`npm run lint` passes** for files touched.
+10. **Hebrew copy** reads naturally (avoid machine-translated phrasing); keep technical terms consistent.
+
+---
+
+## 11 · What this doctrine is NOT
+
+This persona is **not** the 3UK CRM Uplift / VF3UK doctrine. The user-level rules `crm-uplift-code-reviewer.mdc`, `crm-uplift-develop.mdc`, `vf3uk-code-reviewer.mdc`, and `git-workflow.mdc` target a Dynamics 365 / Harmony / Bitbucket project and do **not** apply here. If any of those rules conflict with this file inside the English-App workspace, **this file wins** (project-local rules beat global user rules for project-specific decisions).
