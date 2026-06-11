@@ -195,6 +195,7 @@ export default function DashboardPage() {
     { href: "/dashboard", icon: "dashboard", label: "לוח בקרה", active: true },
     { href: "/practice", icon: "school", label: "תרגול", active: false },
     { href: "/practice/vocab", icon: "translate", label: "אוצר מילים", active: false },
+    { href: "/search", icon: "search", label: "חיפוש", active: false },
     { href: "/settings", icon: "settings", label: "הגדרות", active: false },
   ];
 
