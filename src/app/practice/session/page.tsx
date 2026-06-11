@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import SessionSkeleton from "./session-skeleton";
 
 interface Option {
   id: string;
@@ -76,12 +77,7 @@ function PracticeSession() {
   }, [levelParam, router]);
 
   if (loading) {
-    return (
-      <div className="flex bg-surface min-h-screen items-center justify-center font-hebrew text-primary flex-col gap-4">
-        <span className="material-symbols-outlined animate-spin text-5xl">sync</span>
-        <span className="font-semibold text-lg animate-pulse">טוען שאלות - {levelLabel}...</span>
-      </div>
-    );
+    return <SessionSkeleton />;
   }
 
   if (questions.length === 0) {
@@ -336,12 +332,7 @@ function PracticeSession() {
 
 export default function PracticeSessionPage() {
   return (
-    <Suspense fallback={
-      <div className="flex bg-surface min-h-screen items-center justify-center font-hebrew text-primary flex-col gap-4">
-        <span className="material-symbols-outlined animate-spin text-5xl">sync</span>
-        <span className="font-semibold text-lg animate-pulse">טוען...</span>
-      </div>
-    }>
+    <Suspense fallback={<SessionSkeleton />}>
       <PracticeSession />
     </Suspense>
   );

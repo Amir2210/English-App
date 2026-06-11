@@ -11,6 +11,7 @@ import {
   buildSmartSession, sortCategoriesByLevel, suggestGameMode, getGameModeLabel, getGameModeIcon, getGameModeRoute,
 } from "@/lib/vocab-utils";
 import { useUserProfile } from "@/lib/useUserProfile";
+import DashboardSkeleton from "./dashboard-skeleton";
 
 interface CategoryStats {
   name: string;
@@ -181,14 +182,7 @@ export default function DashboardPage() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-surface flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-surface-container-highest border-t-primary rounded-full animate-spin" />
-          <p className="font-hebrew text-on-surface-variant font-medium">טוען את המערכת...</p>
-        </div>
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   const navLinks = [
