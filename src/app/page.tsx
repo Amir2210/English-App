@@ -219,10 +219,8 @@ export default function HomePage() {
       <nav className="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/15">
         <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4 sm:px-8">
           <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
-              <span className="material-symbols-outlined text-white text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
-            </div>
-            <span className="text-xl font-bold font-headline text-on-surface hidden sm:inline">האקדמיה</span>
+            <Image src="/logo.png" alt="Atlas" width={96} height={96} className="w-9 h-9" priority />
+            <span className="text-xl font-bold font-headline text-on-surface hidden sm:inline">Atlas</span>
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-on-surface-variant">
@@ -829,17 +827,15 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="flex flex-col sm:flex-row-reverse justify-between items-center gap-6">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="material-symbols-outlined text-white text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
-              </div>
-              <span className="text-lg font-bold font-headline text-on-surface">האקדמיה</span>
+              <Image src="/logo.png" alt="Atlas" width={96} height={96} className="w-8 h-8" />
+              <span className="text-lg font-bold font-headline text-on-surface">Atlas</span>
             </div>
             <div className="flex items-center gap-6 text-sm text-outline">
               <Link href="#" className="hover:text-primary transition-colors">תנאי שימוש</Link>
               <Link href="#" className="hover:text-primary transition-colors">מדיניות פרטיות</Link>
               <Link href="#" className="hover:text-primary transition-colors">צור קשר</Link>
             </div>
-            <p className="text-xs text-outline font-body">© 2025 The Scholarly Horizon. All rights reserved.</p>
+            <p className="text-xs text-outline font-body">© 2025 Atlas. All rights reserved.</p>
           </div>
         </div>
       </footer>

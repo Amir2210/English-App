@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "הרשמה | The Scholarly Horizon",
-  description: "צור חשבון חדש ב-The Scholarly Horizon",
+  title: "הרשמה | Atlas",
+  description: "צור חשבון חדש ב-Atlas",
 };
 
 export default function RegisterLayout({ children }: { children: React.ReactNode }) {

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { auth } from "@/lib/firebase";
@@ -63,10 +64,15 @@ export default function RegisterPage() {
       <main className="w-full max-w-md px-6 pt-12 pb-12 flex flex-col items-center mx-auto">
         {/* Decorative Icon/Logo Section */}
         <div className="mb-10 text-center animate-fade-in-up">
-          <div className="w-24 h-24 bg-primary-fixed rounded-full flex items-center justify-center mb-6 mx-auto shadow-[0px_10px_40px_rgba(0,91,191,0.1)] transition-transform duration-500 hover:scale-110">
-            <span className="material-symbols-outlined text-primary text-5xl" style={{fontVariationSettings: "'FILL' 1"}}>school</span>
-          </div>
-          <h2 className="text-3xl font-headline font-extrabold text-on-surface tracking-tight leading-tight">The Scholarly Horizon</h2>
+          <Image
+            src="/logo.png"
+            alt="Atlas"
+            width={96}
+            height={96}
+            priority
+            className="w-24 h-24 mx-auto mb-6 transition-transform duration-500 hover:scale-110"
+          />
+          <h2 className="text-3xl font-headline font-extrabold text-on-surface tracking-tight leading-tight">Atlas</h2>
           <p className="text-on-surface-variant font-label text-lg mt-2 opacity-80">התחילו את המסע האקדמי שלכם היום</p>
         </div>
 
@@ -173,7 +179,7 @@ export default function RegisterPage() {
             <div>
               <h4 className="font-bold text-on-surface font-headline">אבטחה אקדמית בתקן מחמיר</h4>
               <p className="text-sm text-on-surface-variant mt-1 leading-relaxed font-label">
-                הפרטים שלך מוצפנים ונשמרים במערכות המאובטחות של The Scholarly Horizon.
+                הפרטים שלך מוצפנים ונשמרים במערכות המאובטחות של Atlas.
               </p>
             </div>
           </div>

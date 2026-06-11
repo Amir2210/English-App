@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "לוח בקרה | The Scholarly Horizon",
+  title: "לוח בקרה | Atlas",
   description: "לוח הבקרה האישי שלך - עקוב אחרי ההתקדמות שלך בלימוד אנגלית",
 };
 

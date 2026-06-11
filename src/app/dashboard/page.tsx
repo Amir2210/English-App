@@ -211,7 +211,7 @@ export default function DashboardPage() {
         <button onClick={() => setSidebarOpen(true)} className="p-2 -mr-2 rounded-xl hover:bg-surface-container-highest transition-colors">
           <span className="material-symbols-outlined text-on-surface">menu</span>
         </button>
-        <h1 className="text-base font-bold text-on-surface font-headline">האקדמיה</h1>
+        <h1 className="text-base font-bold text-on-surface font-headline">Atlas</h1>
         <div className="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
           <span className="material-symbols-outlined text-outline text-lg">person</span>
         </div>
@@ -233,7 +233,7 @@ export default function DashboardPage() {
         </button>
 
         <div className="mb-8 pr-4">
-          <h2 className="text-lg font-bold text-on-surface font-headline mb-1">האקדמיה</h2>
+          <h2 className="text-lg font-bold text-on-surface font-headline mb-1">Atlas</h2>
           {/* Mini progress bar in sidebar */}
           <div className="h-1.5 rounded-full bg-surface-container-highest mt-2 overflow-hidden">
             <div className="h-full bg-primary rounded-full transition-all duration-700" style={{ width: `${overallPercentage}%` }} />
@@ -706,7 +706,7 @@ export default function DashboardPage() {
               <Link className="hover:text-primary transition-colors" href="#">מדיניות פרטיות</Link>
               <Link className="hover:text-primary transition-colors" href="#">צור קשר</Link>
             </div>
-            <p className="text-xs sm:text-sm text-outline font-body">© 2025 The Scholarly Horizon. All rights reserved.</p>
+            <p className="text-xs sm:text-sm text-outline font-body">© 2025 Atlas. All rights reserved.</p>
           </footer>
         </div>
       </main>

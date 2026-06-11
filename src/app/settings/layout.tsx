@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "הגדרות | The Scholarly Horizon",
+  title: "הגדרות | Atlas",
   description: "ניהול הגדרות חשבון והעדפות למידה",
 };
 
